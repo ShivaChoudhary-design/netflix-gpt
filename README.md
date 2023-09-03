@@ -92,6 +92,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 -Fetching data for Trailer Video
 -Update store with Trailer movie Data
 -Embeed the youtube video and make it autoplay
+-Build Secondary Component
 
 
 
