@@ -1,39 +1,44 @@
 import React from "react";
-import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { removeUser } from "../utils/userSlice";
-
+import { signOut, onAuthStateChanged } from "firebase/auth";
+import { addUser, removeUser } from "../utils/userSlice";
+import { useEffect } from "react";
+import { LOGO } from "../constants";
+import { USER_ICON } from "../constants";
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
   const handleSignOut = () => {
     signOut(auth)
-      .then(() => {
-        navigate("/");
-      })
+      .then(() => {})
       .catch((error) => {
         // An error happened.
 
         navigate("/error");
       });
   };
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { uid, email, displayName } = user;
+        dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
+        navigate("/browse");
+      } else {
+        dispatch(removeUser());
+        navigate("/");
+      }
+    });
+    return () => unsubscribe();
+  }, []);
   return (
     <div className="absolute px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between w-full">
-      <img
-        className="w-44"
-        src="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
-        alt="netflix-logo"
-      />
+      <img className="w-44" src={LOGO} alt="netflix-logo" />
       {user && (
         <div className="flex p-4">
-          <img
-            className="w-10 h-10"
-            alt="user-icon"
-            src="https://occ-0-6436-3646.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABTACKVCVgthvD-eh6ri8ySnqcc7W0t6hyFMiFPrJHXj7MQT6DAYiDE1hfngLDRl2_usDVGGh-vrclPzuYkUYgRBdx3p6anU.png?r=93c"
-          />
+          <img className="w-10 h-10" alt="user-icon" src={USER_ICON} />
 
           <button onClick={handleSignOut} className="font-bold text-white">
             (Sign Out)

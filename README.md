@@ -84,6 +84,16 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 -Implemented SignOut
 -Fetch movies from TMDB API 
 -Build Browse Page
+-Get Data from TMDB API
+-Custom Hooks for Now Playing Movies
+-create MovieSlice
+-Update Store with movie Data
+-Planning for Main Container and Secondary Container
+-Fetching data for Trailer Video
+-Update store with Trailer movie Data
+-Embeed the youtube video and make it autoplay
+
+
 
 
 
