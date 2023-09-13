@@ -93,6 +93,14 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 -Update store with Trailer movie Data
 -Embeed the youtube video and make it autoplay
 -Build Secondary Component
+-Build Movie List
+-Build Movie Card
+-Build Browse PAGE good with Tailwind Css
+-GPT Search Page
+-GPT Search Bar
+-Added Multi Language Feature 
+-Integrate GPT APIS
+
 
 
 
