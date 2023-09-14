@@ -17,3 +17,5 @@ export const API_OPTIONS = {
 };
 
 export const ING_API_URL = "https://image.tmdb.org/t/p/w500/";
+
+export const OPENAI_KEY = "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";
