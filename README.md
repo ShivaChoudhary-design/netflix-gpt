@@ -69,7 +69,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-#Netflix GPT
+## Netflix GPT
 -Create React app
 -configured Tailwind CSS
 -Header
@@ -100,6 +100,15 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 -GPT Search Bar
 -Added Multi Language Feature 
 -Integrate GPT APIS
+-Get Gpt api key
+-Get Gpt api
+-fetch gpt movie suggestions 
+-gpt slice added data
+-reuses movie list component to make movie suggestion container
+-memoization
+-.env file
+-Made our site responsive
+
 
 
 

@@ -5,13 +5,19 @@ import { BAC_IMG } from "../constants";
 
 const GptSearch = () => {
   return (
-    <div>
+    <>
       <div className="fixed -z-10">
-        <img src={BAC_IMG} alt="bac-img" />
+        <img
+          className="h-screen object-cover md:h-auto"
+          src={BAC_IMG}
+          alt="bac-img"
+        />
       </div>
-      <GptSearchBar />
-      <GptMovieSuggestions />
-    </div>
+      <div>
+        <GptSearchBar />
+        <GptMovieSuggestions />
+      </div>
+    </>
   );
 };
 

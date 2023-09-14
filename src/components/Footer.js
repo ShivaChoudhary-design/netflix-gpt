@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="bg-gray-950 text-gray-300 flex justify-center gap-20 py-6">
+    <div className="w-screen hidden md:flex bg-gray-950 text-gray-300  justify-center gap-20 py-6">
       <ul className="flex flex-col gap-4">
         <li>Audio Description</li>
         <li>Invester Relations</li>
