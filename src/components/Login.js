@@ -64,7 +64,11 @@ const Login = () => {
       <Header />
 
       <div className="absolute">
-        <img className="h-screen object-cover" src={BAC_IMG} alt="bac-img" />
+        <img
+          className="h-screen object-cover md:h-auto"
+          src={BAC_IMG}
+          alt="bac-img"
+        />
       </div>
       <form
         onSubmit={(e) => e.preventDefault()}

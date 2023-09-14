@@ -56,7 +56,6 @@ const Header = () => {
             >
               <option value="en">English</option>
               <option value="hindi">Hindi</option>
-              <option value="french">French</option>
             </select>
           )}
 
