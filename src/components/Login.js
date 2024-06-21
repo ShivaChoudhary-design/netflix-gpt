@@ -11,6 +11,7 @@ import { BAC_IMG } from "../constants";
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const changeToSignUp = () => {
     setIsSignIn(!isSignIn);
   };
@@ -58,6 +59,9 @@ const Login = () => {
         });
     }
   };
+  const handlePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
 
   return (
     <div>
@@ -90,12 +94,25 @@ const Login = () => {
           placeholder="Email or phone number"
           className="px-4 py-2 my-4 w-full rounded-sm bg-gray-600"
         />
-        <input
-          ref={password}
-          type="password"
-          placeholder="Password"
-          className="px-4 py-2 my-4 w-full rounded-sm bg-gray-600"
-        />
+        <div className="my-4 w-full rounded-sm bg-gray-600 flex">
+          <input
+            ref={password}
+            type={!isPasswordVisible ? "password" : "text"}
+            placeholder="Password"
+            className="px-4 py-2 bg-gray-600 w-10/12"
+          />
+          <div
+            onClick={handlePasswordVisibility}
+            class="password-toggle-icon"
+            className="flex justify-center items-center w-1/6"
+          >
+            {!isPasswordVisible ? (
+              <i class="fas fa-eye"></i>
+            ) : (
+              <i class="fas fa-eye-slash"></i>
+            )}
+          </div>
+        </div>
         <p className="text-red-600 font-semibold text-lg ">{errorMessage}</p>
         <button
           onClick={handleButtonClick}
