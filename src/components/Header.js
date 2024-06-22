@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import { addUser, removeUser } from "../utils/userSlice";
@@ -13,6 +13,8 @@ import configSlice, { updateLanguage } from "../utils/configSlice";
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
+  const [isProfileVisible, setIsProfileVisible] = useState(false);
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
   const user = useSelector((store) => store.user);
   const handleSignOut = () => {
@@ -44,8 +46,16 @@ const Header = () => {
   const handleLanguageChange = (e) => {
     dispatch(updateLanguage(e.target.value));
   };
+
+  const handleProfile = () => {
+    setIsProfileVisible(!isProfileVisible);
+  };
   return (
-    <div className="absolute px-8 py-2 bg-gradient-to-b from-black z-10 flex flex-col md:flex-row justify-between w-full">
+    <div
+      className={`absolute px-8 py-2  from-black z-10 flex flex-col md:flex-row justify-between w-full ${
+        location.pathname === "/browse" ? "bg-black" : "bg-gradient-to-b"
+      } `}
+    >
       <img className="w-44 mx-auto md:mx-0" src={LOGO} alt="netflix-logo" />
       {user && (
         <div className="flex p-4 text-white justify-center">
@@ -65,15 +75,22 @@ const Header = () => {
           >
             {showGptSearch ? "Homepage" : "GPT Search"}
           </button>
+
           <img
-            className="hidden md:block w-10 h-10"
+            onClick={handleProfile}
+            className="block w-10 h-10 cursor-pointer"
             alt="user-icon"
             src={USER_ICON}
           />
 
-          <button onClick={handleSignOut} className="font-semibold">
-            (Sign Out)
-          </button>
+          {isProfileVisible ? (
+            <div
+              onClick={handleSignOut}
+              className="font-semibold absolute bg-purple-800 py-2 px-11 rounded-lg text-white top-36 md:top-20 cursor-pointer"
+            >
+              Sign Out
+            </div>
+          ) : null}
         </div>
       )}
     </div>

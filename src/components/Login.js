@@ -103,13 +103,12 @@ const Login = () => {
           />
           <div
             onClick={handlePasswordVisibility}
-            class="password-toggle-icon"
             className="flex justify-center items-center w-1/6"
           >
             {!isPasswordVisible ? (
-              <i class="fas fa-eye"></i>
+              <i className="fas fa-eye"></i>
             ) : (
-              <i class="fas fa-eye-slash"></i>
+              <i className="fas fa-eye-slash"></i>
             )}
           </div>
         </div>
