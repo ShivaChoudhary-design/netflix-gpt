@@ -14,8 +14,9 @@ const Login = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const changeToSignUp = () => {
     setIsSignIn(!isSignIn);
+    setErrorMessage(null);
   };
-
+  const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
   const handleButtonClick = () => {
@@ -83,6 +84,7 @@ const Login = () => {
         </h1>
         {!isSignIn && (
           <input
+            ref={name}
             type="text"
             placeholder="Name"
             className="px-4 py-2 my-4 w-full rounded-sm bg-gray-600"
@@ -112,17 +114,14 @@ const Login = () => {
             )}
           </div>
         </div>
-        <p className="text-red-600 font-semibold text-lg ">{errorMessage}</p>
+        <p className="text-red-600 font-semibold text-sm ">{errorMessage}</p>
         <button
           onClick={handleButtonClick}
           className="px-4 py-2 my-6 mb-2 bg-red-600 rounded-md w-full"
         >
           {isSignIn ? "Sign In" : "Sign Up"}
         </button>
-        <ul className="flex justify-between text-xs">
-          <li>Remember me</li>
-          <li>Need help?</li>
-        </ul>
+
         {isSignIn ? (
           <p onClick={changeToSignUp} className="py-6 cursor-pointer">
             {" "}

@@ -6,8 +6,10 @@ export const validateForm = (email, password) => {
   const isPasswordValid =
     /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/.test(password);
 
-  if (!isEmailValid) return "Email ID is not valid";
-  if (!isPasswordValid) return "Password is not valid";
+  if (!isEmailValid)
+    return "Invalid Format: Please enter a valid email address.";
+  if (!isPasswordValid)
+    return "Password must be 6-16 characters long, contain at least one digit, and include at least one special character";
 
   return null;
 };
