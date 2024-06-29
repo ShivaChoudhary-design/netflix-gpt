@@ -72,8 +72,6 @@ const Header = () => {
                   </option>
                 );
               })}
-
-              <option value="hindi">Hindi</option>
             </select>
           )}
 

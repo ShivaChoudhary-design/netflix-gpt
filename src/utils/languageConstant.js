@@ -11,10 +11,6 @@ const lang = {
     search: "buscar",
     gptSearchPlaceholder: "¿Qué te gustaría ver hoy?",
   },
-  frn: {
-    search: "recherche",
-    gptSearchPlaceholder: "Qu’aimeriez-vous regarder aujourd’hui ?",
-  },
 };
 
 export default lang;
