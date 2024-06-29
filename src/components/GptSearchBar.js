@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import lang from "../utils/languageConstant";
 import { useDispatch, useSelector } from "react-redux";
 import openai from "../utils/openai";
@@ -7,6 +7,7 @@ import { addGptMovies } from "../utils/gptSlice";
 
 const GptSearchBar = () => {
   const searchText = useRef(null);
+  const [loader, setLoader] = useState(false);
   const langKey = useSelector((store) => store.config.lang);
   const dispatch = useDispatch();
 
@@ -22,6 +23,7 @@ const GptSearchBar = () => {
   };
 
   const handleGptSearchClick = async () => {
+    setLoader(true);
     // API call to OPENAI GPT
     const gptQuery =
       "Act as a Movie Recommendation System and suggest some movies for the query : " +
@@ -33,37 +35,44 @@ const GptSearchBar = () => {
     });
 
     const gptMovies = gptResults.choices[0]?.message?.content.split(",");
-    console.log(gptMovies);
     // For each movie search TMDB API
     const promiseArray = gptMovies.map((movie) => searchMovieTMDB(movie));
 
     const tmdbResults = await Promise.all(promiseArray);
-    console.log(tmdbResults);
     dispatch(
       addGptMovies({ movieNames: gptMovies, movieResults: tmdbResults })
     );
+    setLoader(false);
   };
 
   return (
-    <div className="pt-[60%] md:pt-[10%] flex justify-center">
-      <form
-        className="bg-black w-full md:w-1/2 grid grid-cols-12"
-        onSubmit={(e) => e.preventDefault()}
-      >
-        <input
-          ref={searchText}
-          type="text"
-          className="py-2 md:p-4 my-4 mx-2 md:m-4 grid col-span-9 text-xs md:text-base"
-          placeholder={lang[langKey].gptSearchPlaceholder}
-        />
-        <button
-          className="py-2 px-1 md:px-4 m-4 col-span-3 bg-red-700 text-white rounded-md text-xs md:text-base"
-          onClick={handleGptSearchClick}
+    <>
+      <div className="pt-[60%] md:pt-[10%] flex justify-center">
+        <form
+          className="bg-black w-full md:w-1/2 grid grid-cols-12"
+          onSubmit={(e) => e.preventDefault()}
         >
-          {lang[langKey].search}
-        </button>
-      </form>
-    </div>
+          <input
+            ref={searchText}
+            type="text"
+            className="py-2 md:p-4 my-4 mx-2 md:m-4 grid col-span-9 text-xs md:text-base"
+            placeholder={lang[langKey].gptSearchPlaceholder}
+          />
+
+          <button
+            className="py-2 px-1 md:px-4 m-4 col-span-3 bg-red-700 text-white rounded-md text-xs md:text-base"
+            onClick={handleGptSearchClick}
+          >
+            {lang[langKey].search}
+          </button>
+        </form>
+      </div>
+      {loader ? (
+        <div className="py-2 flex justify-center items-center px-1 md:px-4 m-4 bg-black bg-opacity-50 text-white rounded-md text-base md:text-2xl">
+          <div>Loading....</div>
+        </div>
+      ) : null}
+    </>
   );
 };
 

@@ -11,11 +11,17 @@ export const API_OPTIONS = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2OWQ2NjZlZDQ0NDhhYTYzNGNjZWVjNTIxNTRiNjkyNSIsInN1YiI6IjY0ZjIzODZjMWYzMzE5MDBlMzU2M2RlMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.8QJA0QogJv2ZeuKOQcQeSkeY9wxuaZK2U6HcgjFv49g",
+    Authorization: "Bearer " + process.env.REACT_APP_TMDB_API_KEY,
   },
 };
 
 export const ING_API_URL = "https://image.tmdb.org/t/p/w500/";
 
-export const OPENAI_KEY = "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";
+export const OPENAI_KEY = process.env.REACT_APP_OPENAI_KEY;
+
+export const SUPPORTED_LANGUAGES = [
+  { identifer: "en", name: "English" },
+  { identifer: "hindi", name: "Hindi" },
+  { identifer: "es", name: "Spanish" },
+  { identifer: "frn", name: "French" },
+];

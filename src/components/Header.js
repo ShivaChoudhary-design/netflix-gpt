@@ -9,6 +9,7 @@ import { LOGO } from "../constants";
 import { USER_ICON } from "../constants";
 import { toggleGptSearchView } from "../utils/gptSlice";
 import configSlice, { updateLanguage } from "../utils/configSlice";
+import { SUPPORTED_LANGUAGES } from "../constants";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -64,7 +65,14 @@ const Header = () => {
               className="py-2 px-2 rounded-lg bg-gray-700"
               onChange={handleLanguageChange}
             >
-              <option value="en">English</option>
+              {SUPPORTED_LANGUAGES.map((language) => {
+                return (
+                  <option key={language.identifer} value={language.identifer}>
+                    {language.name}
+                  </option>
+                );
+              })}
+
               <option value="hindi">Hindi</option>
             </select>
           )}
