@@ -125,7 +125,7 @@ const Login = () => {
         {isSignIn ? (
           <p onClick={changeToSignUp} className="py-6 cursor-pointer">
             {" "}
-            <span className="text-gray-600 ">New to Netflix?</span> Sign Up now.
+            <span className="text-gray-600 ">New to Myflix?</span> Sign Up now.
           </p>
         ) : (
           <p onClick={changeToSignUp} className="py-6 cursor-pointer">

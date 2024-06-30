@@ -7,7 +7,6 @@ const Footer = () => {
         <li>Audio Description</li>
         <li>Invester Relations</li>
         <li>Legal Notices</li>
-        <li>1997-2023 Netflix,Inc.</li>
       </ul>
       <ul className="flex flex-col gap-4">
         <li>Help Centre</li>
